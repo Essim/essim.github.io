@@ -1,8 +1,1069 @@
 <!DOCTYPE html>
 <html>
+<meta charset="utf-8">
+<title>Exercices _ Cours de Javascript</title>
+<style>.p4cell{
+	background-color: white;
+	width: 24px;
+	height: 24px;
+	border-radius: 15px;
+	border-color: black;
+	border-style: solid;
+}
+.grilleP4{
+	background-color: #048113;
+	border-radius: 15px;
+}
+th{
+	color: white;	
+}
+#replay{
+	background-color: white;
+	border-radius: 15px;
+	width: 240px;
+	height: 30px;
+}
+h1, h2, article{
+	text-align : center;	
+}
+
+</style>
+</head>
+
+
+
 <body>
 <h1>Hello World</h1>
 <p>I'm hosted with GitHub Pages.</p>
-<p>I shall evolve soon. (written on 17/09/2018). </p>
-</body>
+<p>I shall evolve soon. (written on 17/09/2018).</p>
+  
+<p>Under this is an old full JS 4 connect.</p>
+  
+  
+  
+	<header>
+		<h1>Javascript</h1>
+</header><section id="puissance4">
+
+	<h2>Puissance 4 très joli permettant de jouer vs une IA acceptable</h2>
+	<article>
+		<p id="result"></p>
+		<button type="button" id="replay">Replay!</button>
+		<p></p>
+		<table align="center" class="grilleP4">
+			<tbody>
+				<tr>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+				</tr>
+				<tr>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+				</tr>
+				<tr>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+				</tr>
+				<tr>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+				</tr>
+				<tr>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+				</tr>
+				<tr>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+					<td class="p4cell"></td>
+				</tr>
+
+			</tbody>
+		</table>
+	</article>
+</section>
+
+<script>
+	var grille=function(){
+
+		var i=0,j=0;
+		var MID_COLUMN = 3;
+		var grille = new Array(7);
+		for(i=0;i<6;i++){
+			grille[i]=new Array(6);
+		}
+		for(i=0;i<6;i++){
+			for(j=0;j<7;j++){
+			grille[i][j]="_";
+		}
+		}
+		
+
+		function play(k, color){ //k = colonne, color = player. 0 = yellow, 1 = red
+			if (winner()!=="No Winner" || (full())) return false;
+			k = k-1;
+			if (color===1 || color==="red"){
+				for(j=5;j>=0;j--){
+					if(grille[j][k]==="_"){
+						grille[j][k]="O";
+						//animation
+						
+var funcs = [];
+
+function createfunc(closure) {
+    return function() {
+    	setTimeout(function(){cellules[7*closure+k].style.backgroundColor='red';},(closure+1)*10);
+    	setTimeout(function(){cellules[7*closure+k].style.backgroundColor='white';},(closure+1)*20);	
+    	};}
+
+for (var anim = 0; anim<j; anim++) {
+    funcs[anim] = createfunc(anim);
+}
+
+for (var e = 0; e < j; e++) {
+    funcs[e](); 
+}
+
+						cellules[7*j+k].style.backgroundColor='red';
+
+						
+						if (winner()!=="No Winner") {
+							corps.style.backgroundColor='red';
+						}
+						if (full()) corps.style.backgroundColor='black';
+						return true;
+					} 
+				}
+						if (k>=0){
+						 return this.play(k, color);
+					} else {return this.play(7, color);}
+			} else if (color===0 || color==="yellow"){
+				for(j=5;j>=0;j--){
+					if(grille[j][k]==="_"){
+						grille[j][k]="X";
+
+						//animation
+var funcs = [];
+
+function createfunc(closure) {
+    return function() {
+    	setTimeout(function(){cellules[7*closure+k].style.backgroundColor='yellow';},(closure+1)*10);
+    	setTimeout(function(){cellules[7*closure+k].style.backgroundColor='white';},(closure+1)*20);	
+    	};}
+
+for (var anim = 0; anim<j; anim++) {
+    funcs[anim] = createfunc(anim);
+}
+
+for (var e = 0; e < j; e++) {
+    funcs[e](); 
+}
+
+						cellules[7*j+k].style.backgroundColor='yellow'
+
+					
+					
+						if (winner()!=="No Winner") {
+							corps.style.backgroundColor = 'yellow';
+						}
+						if (full()) corps.style.backgroundColor='black';
+						return true;
+					} 
+				}
+				if (k>=0){
+					 return this.play(k, color);
+				} else {return this.play(7, color);}
+			}
+		}
+		
+		function colonne(){
+		var won = 0, color = "_";
+			for(j=0;j<7;j++){
+				for(i=5;i>=0;i--){
+					if(grille[i][j]==="_") break;
+					if(grille[i][j]===color) won++;
+					else {color=grille[i][j]; won=1;}
+					if(won===4){
+						if (color==="X") return "Yellow wins";
+						if (color==="O") return "Red wins";
+					}
+				}
+				won=0;color="_";
+			}
+			return "No Winner";
+		}
+
+		function ligne(){
+		var won = 0, color = "_";
+			for(i=5;i>=0;i--){
+				for(j=0;j<7;j++){
+					if(grille[i][j]===color) won++;
+					else {color=grille[i][j]; won=1;}
+					if(won===4){
+						if (color==="X") return "Yellow wins";
+						if (color==="O") return "Red wins";
+					}
+				}
+				won=0;color="_";
+			}
+			return "No Winner";
+		}
+
+		function diagonal(){
+			for(i=5;i>=0;i--){
+				var centre = grille[i][MID_COLUMN];
+				var winner = "";
+				if (centre==="X") winner = "Yellow wins";
+				else if (centre==="O") winner = "Red wins";
+
+				if (centre=="_") return "No Winner";
+
+				function diagonal_upper(i){
+					j=1;
+					while (j<4){
+						if(centre!==grille[i-j][MID_COLUMN-j]) break;
+						j++;
+						if (j===4) return winner;
+					}
+					j=1;
+					while (j<4){
+						if(centre!==grille[i-j][MID_COLUMN+j]) break;
+						j++;
+						if (j===4) return winner;
+					}
+					return "_";
+				}
+				
+				function diagonal_upper_half(i){
+					j=1;
+					while (j<3){
+						if(centre!==grille[i-j][MID_COLUMN-j]) break;
+						j++;
+						if (j===3){
+							if(centre===grille[i+1][MID_COLUMN+1]) return winner;
+					}
+					}
+					j=1;
+					while (j<3){
+						if(centre!==grille[i-j][MID_COLUMN+j]) break;
+						j++;
+						if (j===3){
+							if(centre===grille[i+1][MID_COLUMN-1]) return winner;
+					}
+
+					}
+					return "_";	
+				}
+				function diagonal_lower_half(i){
+					j=1;
+					while (j<3){
+						if(centre!==grille[i+j][MID_COLUMN-j]) break;
+						j++;
+						if (j===3){
+							if(centre===grille[i-1][MID_COLUMN+1]) return winner;
+					}
+					}
+					j=1;
+					while (j<3){
+						if(centre!==grille[i+j][MID_COLUMN+j]) break;
+						j++;
+						if (j===3){
+							if(centre===grille[i-1][MID_COLUMN-1]) return winner;
+					}
+
+					}
+					return "_";	
+				}
+				function diagonal_lower(i){
+					j=1;
+					while (j<4){
+						if(centre!==grille[i+j][MID_COLUMN-j]) break;
+						j++;
+						if (j===4) return winner;
+					}
+					j=1;
+					while (j<4){
+						if(centre!==grille[i+j][MID_COLUMN+j]) break;
+						j++;
+						if (j===4) return winner;
+					}
+					return "_";
+				}
+
+				switch(i){
+					case 5:
+				 		var retour = diagonal_upper(i);
+						if (retour!=="_") return retour;
+						break;
+					case 4:
+						var retour = diagonal_upper(i);
+						if (retour!=="_") return retour;
+						retour = diagonal_upper_half(i);
+						if (retour!=="_") return retour;
+						break;
+					case 3:	
+						var retour = diagonal_upper(i);
+						if (retour!=="_") return retour;
+						retour = diagonal_upper_half(i);
+						if (retour!=="_") return retour;
+						retour = diagonal_lower_half(i);
+						if (retour!=="_") return retour;
+						break;
+					case 2:
+						var retour = diagonal_upper_half(i);
+						if (retour!=="_") return retour;
+						retour = diagonal_lower_half(i);
+						if (retour!=="_") return retour;
+						retour = diagonal_lower(i);
+						if (retour!=="_") return retour;
+						break;
+					case 1:
+						var retour = diagonal_lower_half(i);
+						if (retour!=="_") return retour;
+						retour = diagonal_lower(i);
+						if (retour!=="_") return retour;
+						break;
+					case 0:
+						retour = diagonal_lower(i);
+						if (retour!=="_") return retour;
+						break;
+				}
+			} return "No Winner";
+		}
+
+		function winner(){
+			var test = "No Winner";
+			var winner = "";
+			winner = colonne();
+			if (winner!==test) return winner;
+			winner = ligne();
+			if (winner!==test) return winner;
+			winner = diagonal();
+			if (winner!==test) return winner;
+			return test;
+		
+		}
+		function full(){
+			for(i=0;i<7;i++) {
+				if(grille[0][i]==="_") return false;
+			}
+		return true;
+		}
+
+		function print() {
+			var printed="", w,x; 
+			for(w=0;w<6;w++){
+				for(x=0;x<7;x++){
+					printed += "|"+grille[w][x]+"|";
+				}	
+			printed +="\n";
+			}
+			console.log("Voici le jeu : \n" + printed);
+		}
+
+		var anticipation = 1;//sert à calculHeuristique
+		function calculHeuristique(grille,j,k,joueur){//j,k = ligne,colonne = pos y,x de la case jouée par joueur. ! 0,0 up-left. Joueur = adv (0) ou IA(1)
+			var l, m, n, o;
+			var valeurDefinitive = 0, tri=0;
+			var valeurProvisoire = 0;
+			var piegeDouble = 0;
+			if (joueur===1){
+				grille[j][k]="O";
+				
+				
+		//Check triple O --> Prio 1 -> géré via 100.000
+		//up -> Non-sens xd
+
+//left
+				if (k>2) {
+					var x=0, o=0, winPossible=true;
+					for (tri = 1; tri < 4; tri++) {
+						if (grille[j][k-tri]==="X") {x++; winPossible=false;}
+						else if (grille[j][k-tri]==="O") o++;
+					}
+					if (winPossible && o<3) valeurProvisoire+=500*o;
+					else if (o===3) valeurProvisoire+=100000;
+					else if (x===3) {
+						valeurProvisoire+=10000;
+						piegeDouble++;
+						
+					}
+					
+								
+					valeurDefinitive += valeurProvisoire;
+					valeurProvisoire = 0;
+				}
+
+//down		
+			if (j<3) {
+				var x=0, o=0, winPossible=true;
+				for (tri = 1; tri < 4; tri++) {
+					if (grille[j+tri][k]==="X") {x++; winPossible=false;}
+					else if (grille[j+tri][k]==="O") o++;
+				}
+				if (winPossible && o<3) valeurProvisoire+=500*o;
+				else if (o===3) valeurProvisoire+=100000;
+				else if (x===3) {
+					valeurProvisoire+=10000;
+					piegeDouble++;
+				}
+				
+				valeurDefinitive += valeurProvisoire;
+				valeurProvisoire = 0;
+			}
+//right
+			if (k<4) {
+				var x=0, o=0, winPossible=true;
+				for (tri = 1; tri < 4; tri++) {
+					if (grille[j][k+tri]==="X") {x++; winPossible=false;}
+					else if (grille[j][k+tri]==="O") o++;
+				}
+				if (winPossible && o<3) valeurProvisoire+=500*o;
+				else if (o===3) valeurProvisoire+=100000;
+				else if (x===3) {
+					valeurProvisoire+=10000;
+					piegeDouble++;
+				}
+				
+				valeurDefinitive += valeurProvisoire;
+				valeurProvisoire = 0;
+			}
+//up-left
+			if (k>2 && j>2) {
+				var x=0, o=0, winPossible=true;
+				for (tri = 1; tri < 4; tri++) {
+					if (grille[j-tri][k-tri]==="X") {x++; winPossible=false;}
+					else if (grille[j-tri][k-tri]==="O") o++;
+				}
+				if (winPossible && o<3) valeurProvisoire+=500*o;
+				else if (o===3) valeurProvisoire+=100000;
+				else if (x===3) {
+					valeurProvisoire+=10000;
+					piegeDouble++;
+				}
+				
+				valeurDefinitive += valeurProvisoire;
+				valeurProvisoire = 0;
+			}
+//down-left
+			if (k>2 && j<3) {
+				var x=0, o=0, winPossible=true;
+				for (tri = 1; tri < 4; tri++) {
+					if (grille[j+tri][k-tri]==="X") {x++; winPossible=false;}
+					else if (grille[j+tri][k-tri]==="O") o++;
+				}
+				if (winPossible && o<3) valeurProvisoire+=500*o;
+				else if (o===3) valeurProvisoire+=100000;
+				else if (x===3) {
+					valeurProvisoire+=10000;
+					piegeDouble++;
+				}
+				
+				valeurDefinitive += valeurProvisoire;
+				valeurProvisoire = 0;
+			}
+//down-right
+			if (k<4 && j<3) {
+				var x=0, o=0, winPossible=true;
+				for (tri = 1; tri < 4; tri++) {
+					if (grille[j+tri][k+tri]==="X") {x++; winPossible=false;}
+					else if (grille[j+tri][k+tri]==="O") o++;
+				}
+				if (winPossible && o<3) valeurProvisoire+=500*o;
+				else if (o===3) valeurProvisoire+=100000;
+				else if (x===3) {
+					valeurProvisoire+=10000;
+					piegeDouble++;
+				}
+				
+				valeurDefinitive += valeurProvisoire;
+				valeurProvisoire = 0;
+			}
+//up-right
+			if (k<4 && j>2) {
+				var x=0, o=0, winPossible=true;
+				for (tri = 1; tri < 4; tri++) {
+					if (grille[j-tri][k+tri]==="X") {x++; winPossible=false;}
+					else if (grille[j-tri][k+tri]==="O") o++;
+				}
+				if (winPossible && o<3) valeurProvisoire+=500*o;
+				else if (o===3) valeurProvisoire+=100000;
+				else if (x===3) {
+					valeurProvisoire+=10000;
+					piegeDouble++;
+				}
+				
+				valeurDefinitive += valeurProvisoire;
+				valeurProvisoire = 0;
+			}
+
+//Check 2O/1O --> Prio 1
+//left
+			if (k>1 && k<6) {
+				var x=0, o=0, winPossible=true;
+				for (tri = 1; tri < 3; tri++) {
+					if (grille[j][k-tri]==="X") {x++; winPossible=false;}
+					else if (grille[j][k-tri]==="O") o++;
+				}
+				if (grille[j][k+1]==="X") {x++; winPossible=false;}
+				else if (grille[j][k+1]==="O") o++;
+				
+				if (winPossible && o<3) valeurProvisoire+=500*o;
+				else if (o===3) valeurProvisoire+=100000;
+				else if (x===3) {
+					valeurProvisoire+=10000;
+					piegeDouble++;
+				}
+				
+				valeurDefinitive += valeurProvisoire;
+				valeurProvisoire = 0;
+			}
+//up -> Trivial ici ? Non ! Valeurs partielles
+			if (j>1 && j<5) {
+				var x=0, o=0, winPossible=true;
+				for (tri = 1; tri < 3; tri++) {
+					if (grille[j-tri][k]==="X") {x++; winPossible=false;}
+					else if (grille[j-tri][k]==="O") o++;
+				}
+				if (grille[j+1][k]==="X") {x++; winPossible=false;}
+				else if (grille[j+1][k]==="O") o++;
+				
+				if (winPossible && o<3) valeurProvisoire+=500*o;
+				else if (o===3) valeurProvisoire+=100000;
+				else if (x===3) {
+					valeurProvisoire+=10000;
+					piegeDouble++;
+				}
+				
+				valeurDefinitive += valeurProvisoire;
+				valeurProvisoire = 0;
+			}
+//down -> Trivial ici ? Non ! Valeurs partielles
+			if (j>0 && j<4) {
+				var x=0, o=0, winPossible=true;
+				for (tri = 1; tri < 3; tri++) {
+					if (grille[j+tri][k]==="X") {x++; winPossible=false;}
+					else if (grille[j+tri][k]==="O") o++;
+				}
+				if (grille[j-1][k]==="X") {x++; winPossible=false;}
+				else if (grille[j-1][k]==="O") o++;
+				
+				if (winPossible && o<3) valeurProvisoire+=500*o;
+				else if (o===3) valeurProvisoire+=100000;
+				else if (x===3) {
+					valeurProvisoire+=10000;
+					piegeDouble++;
+				}
+				
+				valeurDefinitive += valeurProvisoire;
+				valeurProvisoire = 0;
+			}
+//right
+			if (k>0 && k<5) {
+				var x=0, o=0, winPossible=true;
+				for (tri = 1; tri < 3; tri++) {
+					if (grille[j][k+tri]==="X") {x++; winPossible=false;}
+					else if (grille[j][k+tri]==="O") o++;
+				}
+				if (grille[j][k-1]==="X") {x++; winPossible=false;}
+				else if (grille[j][k-1]==="O") o++;
+				
+				if (winPossible && o<3) valeurProvisoire+=500*o;
+				else if (o===3) valeurProvisoire+=100000;
+				else if (x===3) {
+					valeurProvisoire+=10000;
+					piegeDouble++;
+				}
+				
+				valeurDefinitive += valeurProvisoire;
+				valeurProvisoire = 0;
+			}
+//up-left
+			if (k>1 && k<6 && j>1 && j<5) {
+				var x=0, o=0, winPossible=true;
+				for (tri = 1; tri < 3; tri++) {
+					if (grille[j-tri][k-tri]==="X") {x++; winPossible=false;}
+					else if (grille[j-tri][k-tri]==="O") o++;
+				}
+				if (grille[j+1][k+1]==="X") {x++; winPossible=false;}
+				else if (grille[j+1][k+1]==="O") o++;
+				
+				if (winPossible && o<3) valeurProvisoire+=500*o;
+				else if (o===3) valeurProvisoire+=100000;
+				else if (x===3) {
+					valeurProvisoire+=10000;
+					piegeDouble++;
+				}
+				
+				valeurDefinitive += valeurProvisoire;
+				valeurProvisoire = 0;
+			}
+//down-left
+			if (k>1 && k<6 && j>0 && j<4) {
+				var x=0, o=0, winPossible=true;
+				for (tri = 1; tri < 3; tri++) {
+					if (grille[j+tri][k-tri]==="X") {x++; winPossible=false;}
+					else if (grille[j+tri][k-tri]==="O") o++;
+				}
+				if (grille[j-1][k+1]==="X") {x++; winPossible=false;}
+				else if (grille[j-1][k+1]==="O") o++;
+				
+				if (winPossible && o<3) valeurProvisoire+=500*o;
+				else if (o===3) valeurProvisoire+=100000;
+				else if (x===3) {
+					valeurProvisoire+=10000;
+					piegeDouble++;
+				}
+				
+				valeurDefinitive += valeurProvisoire;
+				valeurProvisoire = 0;
+			}
+//down-right
+			if (k>0 && k<5 && j>0 && j<4) {
+				var x=0, o=0, winPossible=true;
+				for (tri = 1; tri < 3; tri++) {
+					if (grille[j+tri][k+tri]==="X") {x++; winPossible=false;}
+					else if (grille[j+tri][k+tri]==="O") o++;
+				}
+				if (grille[j-1][k-1]==="X") {x++; winPossible=false;}
+				else if (grille[j-1][k-1]==="O") o++;
+				
+				if (winPossible && o<3) valeurProvisoire+=500*o;
+				else if (o===3) valeurProvisoire+=100000;
+				else if (x===3) {
+					valeurProvisoire+=10000;
+					piegeDouble++;
+				}
+				
+				valeurDefinitive += valeurProvisoire;
+				valeurProvisoire = 0;
+			}
+//up-right
+			if (k>0 && k<5 && j>1 && j<5) {
+				var x=0, o=0, winPossible=true;
+				for (tri = 1; tri < 3; tri++) {
+					if (grille[j-tri][k+tri]==="X") {x++; winPossible=false;}
+					else if (grille[j-tri][k+tri]==="O") o++;
+				}
+				if (grille[j+1][k-1]==="X") {x++; winPossible=false;}
+				else if (grille[j+1][k-1]==="O") o++;
+				
+				if (winPossible && o<3) valeurProvisoire+=500*o;
+				else if (o===3) valeurProvisoire+=100000;
+				else if (x===3) {
+					valeurProvisoire+=10000;
+					piegeDouble++;
+				}
+
+				valeurDefinitive += valeurProvisoire;
+				valeurProvisoire = 0;				
+			}
+			if(piegeDouble>0) {
+				valeurDefinitive+=66;
+				}
+			//gère la lecture à 1 coup de distance. rappelle calculHeur avec "anticipation--";
+			//l'IA est O. -> Elle évalue son coup en fonction de ses possibilités, ce qu'elle bloque puis :
+			//de la lecture de tous les coups adverses possibles suite à sa grille. 
+			//Si elle permet une double 'victoire', alors NàN.
+			//Si elle se place en double 'victoire', alors OUI. -> Pas encore prévu
+			if (anticipation===1){
+				anticipation--;
+				for(l=0;l<7;l++){
+					for(m=5;m>=0;m--){
+						if(grille[m][l]==="_"){
+							grille[m][l]="X"
+							var piege = 0;
+							for(n=0;n<7;n++){
+								for(o=5;o>=0;o--){
+									if(grille[o][n]==="_"){
+										if ((calculHeuristique(grille,o,n,joueur)-66)%10===0) {
+											piege++;
+										}
+										o=-1;
+									}
+								}	
+							}
+							if (piege>1) valeurDefinitive-=9000;
+							grille[m][l]="_"		
+							m=-1;
+							}
+						} 
+					}
+				anticipation++;
+				}
+
+			
+			grille[j][k]="_";
+			
+				
+			} else if (joueur===0) {//Symbolise le joueur
+				grille[j][k]="X";
+
+				
+				
+				//Pour la soustraction de la valeur de l'adversaire post-coup. Or un coup où l'adv nous bloque n'est 
+				//pas bien pour nous.	(OwinO+OlockX)-(XwinX+XlockO)=qualité choisie. -XlockO ? Voulu ? Obliger X à lock…
+				//! Augmenter les futurs "Obliger à lock" permet d'avoir des coups double-win => victoire future. Donc à garder !
+				
+				
+				//Check triple O --> Prio 1 -> géré via 100.000
+				//"O" devient "X" p/r à avant, je ne change pas les autres variables (x, o) par flemme, mais sache le, moi !
+				//left
+				if (k>2) {
+					var x=0, o=0, winPossible=true;
+					for (tri = 1; tri < 4; tri++) {
+						if (grille[j][k-tri]==="O") {x++; winPossible=false;}
+						else if (grille[j][k-tri]==="X") o++;
+					}
+					if (winPossible && o<3) valeurProvisoire+=500*o;
+					else if (o===3) valeurProvisoire+=100000;
+					else if (x===3) valeurProvisoire+=10000;
+					
+					valeurDefinitive += valeurProvisoire;
+					valeurProvisoire = 0;
+				}
+				//down		
+				if (j<3) {
+					var x=0, o=0, winPossible=true;
+					for (tri = 1; tri < 4; tri++) {
+						if (grille[j+tri][k]==="O") {x++; winPossible=false;}
+						else if (grille[j+tri][k]==="X") o++;
+					}
+					if (winPossible && o<3) valeurProvisoire+=500*o;
+					else if (o===3) valeurProvisoire+=100000;
+					else if (x===3) valeurProvisoire+=10000;
+					
+					valeurDefinitive += valeurProvisoire;
+					valeurProvisoire = 0;
+				}
+				//right
+				if (k<4) {
+					var x=0, o=0, winPossible=true;
+					for (tri = 1; tri < 4; tri++) {
+						if (grille[j][k+tri]==="O") {x++; winPossible=false;}
+						else if (grille[j][k+tri]==="X") o++;
+					}
+					if (winPossible && o<3) valeurProvisoire+=500*o;
+					else if (o===3) valeurProvisoire+=100000;
+					else if (x===3) valeurProvisoire+=10000;
+					
+					valeurDefinitive += valeurProvisoire;
+					valeurProvisoire = 0;
+				}
+				//up-left
+				if (k>2 && j>2) {
+					var x=0, o=0, winPossible=true;
+					for (tri = 1; tri < 4; tri++) {
+						if (grille[j-tri][k-tri]==="O") {x++; winPossible=false;}
+						else if (grille[j-tri][k-tri]==="X") o++;
+					}
+					if (winPossible && o<3) valeurProvisoire+=500*o;
+					else if (o===3) valeurProvisoire+=100000;
+					else if (x===3) valeurProvisoire+=10000;
+					
+					valeurDefinitive += valeurProvisoire;
+					valeurProvisoire = 0;
+				}
+				//down-left
+				if (k>2 && j<3) {
+					var x=0, o=0, winPossible=true;
+					for (tri = 1; tri < 4; tri++) {
+						if (grille[j+tri][k-tri]==="O") {x++; winPossible=false;}
+						else if (grille[j+tri][k-tri]==="X") o++;
+					}
+					if (winPossible && o<3) valeurProvisoire+=500*o;
+					else if (o===3) valeurProvisoire+=100000;
+					else if (x===3) valeurProvisoire+=10000;
+					
+					valeurDefinitive += valeurProvisoire;
+					valeurProvisoire = 0;
+				}
+				//down-right
+				if (k<4 && j<3) {
+					var x=0, o=0, winPossible=true;
+					for (tri = 1; tri < 4; tri++) {
+						if (grille[j+tri][k+tri]==="O") {x++; winPossible=false;}
+						else if (grille[j+tri][k+tri]==="X") o++;
+					}
+					if (winPossible && o<3) valeurProvisoire+=500*o;
+					else if (o===3) valeurProvisoire+=100000;
+					else if (x===3) valeurProvisoire+=10000;
+					
+					valeurDefinitive += valeurProvisoire;
+					valeurProvisoire = 0;
+				}
+				//up-right
+				if (k<4 && j>2) {
+					var x=0, o=0, winPossible=true;
+					for (tri = 1; tri < 4; tri++) {
+						if (grille[j-tri][k+tri]==="O") {x++; winPossible=false;}
+						else if (grille[j-tri][k+tri]==="X") o++;
+					}
+					if (winPossible && o<3) valeurProvisoire+=500*o;
+					else if (o===3) valeurProvisoire+=100000;
+					else if (x===3) valeurProvisoire+=10000;
+					
+					valeurDefinitive += valeurProvisoire;
+					valeurProvisoire = 0;
+				}
+
+				//Check 2O/1O --> Prio 1
+				//left
+				if (k>1 && k<6) {
+					var x=0, o=0, winPossible=true;
+					for (tri = 1; tri < 3; tri++) {
+						if (grille[j][k-tri]==="O") {x++; winPossible=false;}
+						else if (grille[j][k-tri]==="X") o++;
+					}
+					if (grille[j][k+1]==="O") {x++; winPossible=false;}
+					else if (grille[j][k+1]==="X") o++;
+					
+					if (winPossible && o<3) valeurProvisoire+=500*o;
+					else if (o===3) valeurProvisoire+=100000;
+					else if (x===3) valeurProvisoire+=10000;
+					
+					valeurDefinitive += valeurProvisoire;
+					valeurProvisoire = 0;
+				}
+				//up -> Trivial ici ? Non ! Valeurs partielles
+				if (j>1 && j<5) {
+					var x=0, o=0, winPossible=true;
+					for (tri = 1; tri < 3; tri++) {
+						if (grille[j-tri][k]==="O") {x++; winPossible=false;}
+						else if (grille[j-tri][k]==="X") o++;
+					}
+					if (grille[j+1][k]==="O") {x++; winPossible=false;}
+					else if (grille[j+1][k]==="X") o++;
+					
+					if (winPossible && o<3) valeurProvisoire+=500*o;
+					else if (o===3) valeurProvisoire+=100000;
+					else if (x===3) valeurProvisoire+=10000;
+					
+					valeurDefinitive += valeurProvisoire;
+					valeurProvisoire = 0;
+				}
+				//down -> Trivial ici ? Non ! Valeurs partielles
+				if (j>0 && j<4) {
+					var x=0, o=0, winPossible=true;
+					for (tri = 1; tri < 3; tri++) {
+						if (grille[j+tri][k]==="O") {x++; winPossible=false;}
+						else if (grille[j+tri][k]==="X") o++;
+					}
+					if (grille[j-1][k]==="O") {x++; winPossible=false;}
+					else if (grille[j-1][k]==="X") o++;
+					
+					if (winPossible && o<3) valeurProvisoire+=500*o;
+					else if (o===3) valeurProvisoire+=100000;
+					else if (x===3) valeurProvisoire+=10000;
+					
+					valeurDefinitive += valeurProvisoire;
+					valeurProvisoire = 0;
+				}
+				//right
+				if (k>0 && k<5) {
+					var x=0, o=0, winPossible=true;
+					for (tri = 1; tri < 3; tri++) {
+						if (grille[j][k+tri]==="O") {x++; winPossible=false;}
+						else if (grille[j][k+tri]==="X") o++;
+					}
+					if (grille[j][k-1]==="O") {x++; winPossible=false;}
+					else if (grille[j][k-1]==="X") o++;
+					
+					if (winPossible && o<3) valeurProvisoire+=500*o;
+					else if (o===3) valeurProvisoire+=100000;
+					else if (x===3) valeurProvisoire+=10000;
+					
+					valeurDefinitive += valeurProvisoire;
+					valeurProvisoire = 0;
+				}
+				//up-left
+				if (k>1 && k<6 && j>1 && j<5) {
+					var x=0, o=0, winPossible=true;
+					for (tri = 1; tri < 3; tri++) {
+						if (grille[j-tri][k-tri]==="O") {x++; winPossible=false;}
+						else if (grille[j-tri][k-tri]==="X") o++;
+					}
+					if (grille[j+1][k+1]==="O") {x++; winPossible=false;}
+					else if (grille[j+1][k+1]==="X") o++;
+					
+					if (winPossible && o<3) valeurProvisoire+=500*o;
+					else if (o===3) valeurProvisoire+=100000;
+					else if (x===3) valeurProvisoire+=10000;
+					
+					valeurDefinitive += valeurProvisoire;
+					valeurProvisoire = 0;
+				}
+				//down-left
+				if (k>1 && k<6 && j>0 && j<4) {
+					var x=0, o=0, winPossible=true;
+					for (tri = 1; tri < 3; tri++) {
+						if (grille[j+tri][k-tri]==="O") {x++; winPossible=false;}
+						else if (grille[j+tri][k-tri]==="X") o++;
+					}
+					if (grille[j-1][k+1]==="O") {x++; winPossible=false;}
+					else if (grille[j-1][k+1]==="X") o++;
+					
+					if (winPossible && o<3) valeurProvisoire+=500*o;
+					else if (o===3) valeurProvisoire+=100000;
+					else if (x===3) valeurProvisoire+=10000;
+					
+					valeurDefinitive += valeurProvisoire;
+					valeurProvisoire = 0;
+				}
+				//down-right
+				if (k>0 && k<5 && j>0 && j<4) {
+					var x=0, o=0, winPossible=true;
+					for (tri = 1; tri < 3; tri++) {
+						if (grille[j+tri][k+tri]==="O") {x++; winPossible=false;}
+						else if (grille[j+tri][k+tri]==="X") o++;
+					}
+					if (grille[j-1][k-1]==="O") {x++; winPossible=false;}
+					else if (grille[j-1][k-1]==="X") o++;
+								
+					if (winPossible && o<3) valeurProvisoire+=500*o;
+					else if (o===3) valeurProvisoire+=100000;
+					else if (x===3) valeurProvisoire+=10000;
+								
+					valeurDefinitive += valeurProvisoire;
+					valeurProvisoire = 0;
+				}
+				//up-right
+				if (k>0 && k<5 && j>1 && j<5) {
+					var x=0, o=0, winPossible=true;
+					for (tri = 1; tri < 3; tri++) {
+						if (grille[j-tri][k+tri]==="O") {x++; winPossible=false;}
+						else if (grille[j-tri][k+tri]==="X") o++;
+					}
+					if (grille[j+1][k-1]==="O") {x++; winPossible=false;}
+					else if (grille[j+1][k-1]==="X") o++;
+								
+					if (winPossible && o<3) valeurProvisoire+=500*o;
+					else if (o===3) valeurProvisoire+=100000;
+					else if (x===3) valeurProvisoire+=10000;
+								
+					valeurDefinitive += valeurProvisoire;
+					valeurProvisoire = 0;
+				}
+
+			}
+			grille[j][k]="_";
+			return valeurDefinitive;
+		}
+
+		function IA(){
+		var colonneAJouer=0;
+		var valeurCoup, valeurCoupActuel=-100000;
+		//déterminer colonne à jouer sur base de grille 
+			for(k=0;k<7;k++){
+				for(j=5;j>=0;j--){
+					if(grille[j][k]==="_"){
+						var rand = 0;
+						valeurCoup = calculHeuristique(grille,j,k,1)-(Math.abs(k-3)); //calcul valeur du coup
+						if (j>0){
+							valeurCoup -= (calculHeuristique(grille,j-1,k,0)/2);
+						} //retrait du futur coup ennemi
+						else {valeurCoup -= 5000;}//Comment gérer le dernier coup de la ligne pour qu'il soit équilibré  ? à réfléchir
+						if (valeurCoup > valeurCoupActuel) {
+							valeurCoupActuel = valeurCoup;
+							colonneAJouer = k;
+						}
+					j=-1;
+					} 
+				}
+			}
+				
+		play(colonneAJouer+1, 1);
+		}
+		
+		var self={
+			play:play,
+			full:full,
+			winner:winner,
+			IA:IA,
+			print:print
+		}
+
+		return self;
+	}
+	var cellules = document.getElementsByClassName('p4cell');
+	var jeu = grille(); var numZone = 0;
+    var corps = document.getElementById('puissance4');
+	var chacunsontour = 0;
+ 
+	var rejouer = document.getElementById('replay');
+	rejouer.addEventListener("click",function(){
+		jeu=grille();
+		var funcs = [];
+		function createfunc(closure) {
+		    return function() {
+		    	setTimeout(function(){cellules[closure].style.backgroundColor='white';},(closure+1)*10);	
+				corps.style.backgroundColor='transparent';
+				};}
+
+		for (var anim = 41; anim>=0; anim--) {
+		    funcs[anim] = createfunc(anim);
+		}
+
+		for (var e = 41; e >=0; e--) {
+		    funcs[e](); 
+		}
+		if (chacunsontour%2==0) setTimeout(jeu.IA, 600);
+		chacunsontour++;
+		});
+	
+	var funcs = [];
+
+	function createfunc(i) {
+	    return function() {
+//mes trucs utilisant les param de mon for
+			cellules[i].addEventListener("click",function(){jeu.play((i%7)+1,0);setTimeout(jeu.IA, 300);});
+		    };
+	}
+
+	for (var i = 0; i < 42; i++) {
+	    funcs[i] = createfunc(i);
+	}
+
+	for (var j = 0; j < 42; j++) {
+	    funcs[j]();                        
+	}
+
+	
+</script>
+
+	</header>	<footer>
+			<strong>Essim Caldin</strong>
+		</footer>
+	</body>
 </html>
+
+
